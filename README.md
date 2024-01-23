@@ -1,21 +1,15 @@
-# template-repository
-codering
-Tijdens het opleveren van code zien we graag dat er een README bestand wordt meegeleverd, dit maakt het gemakkelijker voor een ander om met jouw code verder te gaan of er gebruik van te maken.
-Deze README beschrijft het project, wat je nodig hebt om de code te gebruiken en hoe je de code kunt gebruiken. Uiteraard kan dit ietsje afwijken aan de hand van welke taal je hebt geprogrammeerd, maar blijf het liefst zo dicht bij mogelijk bij deze standaarden.
+De functie van de Raspberry pi’s in dit project is om communicatie tussen de stations en de MiR100 (AMR) mogelijk te maken. Op elk station (blauwe transportbanden) is een Raspberry pi 4b met twee knoppen en een eindeloopschakelaar bevestigd. Op deze manier kan er op een knop gedrukt worden om de MiR100 op te roepen en taken (missies) uit te laten voeren.
 
-De volgende dingen zien we graag in een README:
-- beschrijving: graag zien we een korte beschrijving van je project. dus een korte uitleg wat je code doet als je het gebruikt.
-- imports en versies: graag zien we een lijst met alle imports, packages, software, etc die je hebt gebruikt met de versies. Denk hierbij aan je python versie, dat je iets met "pip install" hebt geinstalleerd of dat je ubuntu 23.04 als operating system hebt gebruikt (dus ook welke versie je hebt geinstalleerd). (test dus ook je code op een andere laptop!!! hierdoor weet je zeker dat je alles genoteerd hebt)
-- architectuur: graag zien we een korte beschrijving van de architectuur van je project. welke bestanden hebben welke bestanden nodig en wat kun je in welk bestand vinden.
-- reference: graag zien we een lijst met welke code je niet zelf hebt gemaakt of gebaseerd hebt op een ander zijn code met daarbij een link naar de originele code en een datum waarop je die code hebt geraadpleegd. Dit zorgt ervoor dat de juiste mensen credit krijgen. (let op, ook als je een functie ergens vandaan haalt en aanpast hoor je nog steeds te zeggen wie daar credit voor krijgt).
-- usage: op het moment dat je extra hardware zoals een robot gebruikt is het fijn als er ook iets uitgelegd wordt over hoe je alles hebt aangesloten en opgestart. Misschien is het wel van belang dat je eerst het programma op de cobot start voordat je de python code op je laptop start.
+Ik heb op mijn laptop met Windows 11 de versies Python 3.11 en PyCharm Community Edition 2023.2.3 gebruikt.
+Ook heb ik RPi.GPIO, sleep, requests en json als imports gebruikt (zie codeDemo.py).
 
-- commenting: in code is het vrij normaal om comments te gebruiken om je code duidelijker te maken. Graag zien we dan ook dat dit gedaan wordt.
-	- functie beschrijving: Liefst zien we dat er per functie met een comment uitgelegd wordt hoe de functie werkt en waarvoor ie bedoeld wordt (dit kan vaak in 1 zin). mocht de functie lang zijn dan zien we ook graag comments tussendoor.
-	- Bestand beschrijving: Liefst zien we bovenaan elk bestand dat er een korte beschrijving staat van welke functies er in het bestand geprogrammeerd zijn.
-	- Variabele beschrijving:
+Dit filmpje was de rode draad tijdens het opstellen van het programma: https://www.youtube.com/watch?v=AK7R-zIzcuY&list=PLh3_StUm_Ycmrpc119nij8GDNToSjph3e&index=18&t=538s
 
-mocht je wat inspiratie willen kun je op de github hieronder even kijken.
-https://github.com/matiassingers/awesome-readme
+Hoe de schakeling/bedrading is opgebouwd staat in het reeds gedeelde TCD document.
 
-https://integrity.mit.edu/handbook/academic-integrity-handbook
+Opmerkingen:
+•	Als er met een ander account wordt ingelogd op de MiR server zal er een ander wachtwoord (“authorization”) gevormd worden, dit moet dan aangepast worden in de code. 
+•	De communicatie wordt gedaan aan de hand van het restAPI van de MiR100, er worden requests van de types “get” en “post” verstuurd naar de MiR100 server (lijnen 18, 26, 36). In de post-requests wordt het guid van de specifieke missie vermeld (lijnen 25 en 35).  
+•	Als er te snel op een knop wordt gedrukt is het mogelijk dat de request niet verstuurd wordt. 
+•	Volgens dit programma moet er afwisselend op de groene en blauwe knop gedrukt worden. De groene knop doet het als de eindeloopschakelaar laag staat, de blauwe knop doet het als de eindeloopschakelaar hoog staat.
+•	De Raspberry pi’s moeten op hetzelfde netwerk zitten als de MiR server, dit is het AWL netwerk. De gebruikte Raspberry pi’s (019 en 017) verbinden automatisch met dit netwerk. 
